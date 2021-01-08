@@ -1,8 +1,10 @@
 use std::fmt::Display;
 
+pub mod lru_cache;
 use crate::List::*;
 
-pub enum List<T: Display> {
+
+pub enum List<T: Display > {
     Node {
         value: T,
         next: Box<List<T>>,
@@ -10,7 +12,7 @@ pub enum List<T: Display> {
     Nil,
 }
 
-impl<T: Display> List<T> {
+impl<T: Display > List<T> {
     pub fn new() -> List<T> {
         Nil
     }
@@ -70,6 +72,5 @@ mod tests {
         }
 
         assert_eq!(list.len(), 200);
-
     }
 }

@@ -11,7 +11,9 @@ Hopefully idiomatic rust code too, but that might come later.
 
 ## How to run
 For the rust solutions, from the root directory, run:
-- `cargo test`
+<br/>
+`cargo test`
+<br/>
 For the python solutions, point python at each file, for example:
-- `python python_solutions/a_star_search.py`
+`python python_solutions/a_star_search.py`
 

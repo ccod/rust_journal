@@ -15,5 +15,6 @@ For the rust solutions, from the root directory, run:
 `cargo test`
 <br/>
 For the python solutions, point python at each file, for example:
+<br/>
 `python python_solutions/a_star_search.py`
 

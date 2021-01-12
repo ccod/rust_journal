@@ -1,6 +1,7 @@
 use std::fmt::Display;
 
 use crate::List::*;
+pub mod square_root;
 
 
 pub enum List<T: Display > {

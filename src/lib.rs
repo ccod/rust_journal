@@ -2,6 +2,7 @@ use std::fmt::Display;
 
 use crate::List::*;
 pub mod square_root;
+pub mod rearrange;
 
 
 pub enum List<T: Display > {

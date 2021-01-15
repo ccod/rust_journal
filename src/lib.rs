@@ -1,32 +1,31 @@
 use std::fmt::Display;
 
 use crate::List::*;
-pub mod square_root;
 pub mod rearrange;
+pub mod square_root;
 
-
-pub enum List<T: Display > {
-    Node {
-        value: T,
-        next: Box<List<T>>,
-    },
+pub enum List<T: Display> {
+    Node { value: T, next: Box<List<T>> },
     Nil,
 }
 
-impl<T: Display > List<T> {
+impl<T: Display> List<T> {
     pub fn new() -> List<T> {
         Nil
     }
 
     pub fn peek(&self) -> Option<&T> {
         match *self {
-            Node{ ref value, next: _ } => Some(value),
+            Node { ref value, next: _ } => Some(value),
             Nil => None,
         }
     }
 
     pub fn prepend(self, elem: T) -> List<T> {
-        Node { value: elem, next: Box::new(self) }
+        Node {
+            value: elem,
+            next: Box::new(self),
+        }
     }
 
     pub fn len(&self) -> i32 {
@@ -38,7 +37,10 @@ impl<T: Display > List<T> {
 
     pub fn stringify(&self) -> String {
         match *self {
-            Node { ref value, ref next} => {
+            Node {
+                ref value,
+                ref next,
+            } => {
                 format!("{}, {}", value, next.stringify())
             }
             Nil => {
@@ -60,7 +62,7 @@ mod tests {
         match list.peek() {
             Some(value) => assert_eq!(*value, 12),
             // looking for a better way to assert failure
-            None => assert_eq!(1, 2),  
+            None => assert_eq!(1, 2),
         }
     }
 

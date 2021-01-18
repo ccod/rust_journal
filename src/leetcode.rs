@@ -84,5 +84,8 @@ mod tests {
 
         let nums2: Vec<i32> = vec![2, 4, 3, 3, 5, 4, 9, 6];
         assert_eq!(most_competitive(nums2, 4), vec![2, 3, 3, 4]);
+
+        let nums3: Vec<i32> = vec![71, 18, 52, 29, 55, 73, 24, 42, 66, 8, 80, 2];
+        assert_eq!(most_competitive(nums3, 3), vec![2, 6]);
     }
 }

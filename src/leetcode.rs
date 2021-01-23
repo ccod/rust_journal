@@ -1,5 +1,5 @@
 use std::cmp::{Eq, Ord, Ordering, PartialEq, PartialOrd};
-use std::collections::BinaryHeap;
+use std::collections::{BinaryHeap, HashMap};
 
 // Problem 1672
 pub fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
@@ -101,6 +101,27 @@ pub fn get_strongest(arr: Vec<i32>, k: i32) -> Vec<i32> {
     return temp;
 }
 
+// 1512
+pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
+    let mut counter: i32 = 0;
+    let mut value_groupings = HashMap::new();
+
+    for i in nums.iter() {
+        value_groupings
+            .entry(i)
+            .and_modify(|e| *e += 1)
+            .or_insert(1);
+    }
+
+    for c in value_groupings.values() {
+        for i in 0..*c {
+            counter += i
+        }
+    }
+
+    return counter;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -151,5 +172,16 @@ mod tests {
         assert_eq!(get_strongest(nums3, 5), vec![11, 8, 6, 6, 7]);
         assert_eq!(get_strongest(nums4, 3), vec![-3, 11, 2]);
         assert_eq!(get_strongest(nums5, 2), vec![22, 17]);
+    }
+
+    #[test]
+    fn check_num_identical_pairs() {
+        let nums: Vec<i32> = vec![1, 2, 3, 1, 1, 3];
+        let nums2: Vec<i32> = vec![1, 1, 1, 1];
+        let nums3: Vec<i32> = vec![1, 2, 3];
+
+        assert_eq!(num_identical_pairs(nums), 4);
+        assert_eq!(num_identical_pairs(nums2), 6);
+        assert_eq!(num_identical_pairs(nums3), 0);
     }
 }

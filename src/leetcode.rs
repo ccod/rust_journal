@@ -75,7 +75,7 @@ pub fn shuffle(nums: Vec<i32>, n: i32) -> Vec<i32> {
     return result;
 }
 
-// 1471
+// Problem 1471
 pub fn get_strongest(arr: Vec<i32>, k: i32) -> Vec<i32> {
     let mut temp: Vec<i32> = arr;
     temp.sort();
@@ -101,7 +101,7 @@ pub fn get_strongest(arr: Vec<i32>, k: i32) -> Vec<i32> {
     return temp;
 }
 
-// 1512
+// Problem 1512
 pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
     let mut counter: i32 = 0;
     let mut value_groupings = HashMap::new();
@@ -120,6 +120,48 @@ pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
     }
 
     return counter;
+}
+
+// Problem 1472
+struct BrowserHistory {
+    history: Vec<String>,
+    position: usize,
+}
+
+impl BrowserHistory {
+    fn new(homepage: String) -> Self {
+        BrowserHistory {
+            history: vec![homepage],
+            position: 0,
+        }
+    }
+
+    fn visit(&mut self, page: String) {
+        if self.position != self.history.len() - 1 {
+            self.history.resize(self.position + 1, String::new());
+        }
+        self.history.push(page);
+        self.position += 1
+    }
+
+    fn back(&mut self, steps: i32) -> String {
+        for _ in 0..steps {
+            if self.position == 0 {
+                return self.history[self.position].clone();
+            }
+            self.position -= 1;
+        }
+        return self.history[self.position].clone();
+    }
+    fn forward(&mut self, steps: i32) -> String {
+        for _ in 0..steps {
+            if self.position == self.history.len() - 1 {
+                return self.history[self.position].clone();
+            }
+            self.position += 1;
+        }
+        return self.history[self.position].clone();
+    }
 }
 
 #[cfg(test)]
@@ -183,5 +225,16 @@ mod tests {
         assert_eq!(num_identical_pairs(nums), 4);
         assert_eq!(num_identical_pairs(nums2), 6);
         assert_eq!(num_identical_pairs(nums3), 0);
+    }
+
+    #[test]
+    fn check_browser_history() {
+        let mut bhistory = BrowserHistory::new(String::from("www.leetcode.com"));
+        bhistory.visit(String::from("www.google.com"));
+        bhistory.visit(String::from("www.facebook.com"));
+        bhistory.visit(String::from("www.youtube.com"));
+        assert_eq!(bhistory.back(1), String::from("www.facebook.com"));
+        assert_eq!(bhistory.back(1), String::from("www.google.com"));
+        assert_eq!(bhistory.forward(1), String::from("www.facebook.com"));
     }
 }

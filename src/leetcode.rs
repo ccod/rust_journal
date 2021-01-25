@@ -128,6 +128,7 @@ struct BrowserHistory {
     position: usize,
 }
 
+#[allow(dead_code)]
 impl BrowserHistory {
     fn new(homepage: String) -> Self {
         BrowserHistory {

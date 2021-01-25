@@ -1,6 +1,7 @@
 use std::fmt::Display;
 
 use crate::List::*;
+pub mod a_star;
 pub mod leetcode;
 pub mod rearrange;
 pub mod square_root;

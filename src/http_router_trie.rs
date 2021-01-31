@@ -1,88 +1,187 @@
 use std::collections::HashMap;
 
-fn split_path(route: &str) -> Vec<String> {
-    let route_path: Vec<String> = route.split('/').map(|e| String::from(e)).collect();
-    if route_path[route_path.len() - 1] == "" {
-        return route_path[1..route_path.len() - 1].to_vec();
-    } else {
-        return route_path[1..].to_vec();
-    }
-}
-
 struct TrieNode {
     handler: Option<String>,
     children: HashMap<String, usize>,
 }
 
-struct RouterTrie {
+impl TrieNode {
+    fn new(handler: Option<String>) -> TrieNode {
+        TrieNode {
+            handler,
+            children: HashMap::new(),
+        }
+    }
+
+    fn change_handler(&mut self, handler: String) {
+        self.handler = Some(handler);
+    }
+
+    fn add_path(&mut self, sub_path: &String, index: &usize) {
+        match self.children.get(sub_path) {
+            Some(_) => {
+                return;
+            }
+            None => {
+                self.children.insert(sub_path.to_owned(), *index);
+            }
+        }
+    }
+}
+
+pub struct Trie {
     nodes: Vec<TrieNode>,
 }
 
-impl RouterTrie {
-    fn new(handler: String) -> Self {
-        RouterTrie {
-            nodes: vec![TrieNode {
-                handler: Some(handler),
-                children: HashMap::new(),
-            }],
+impl Trie {
+    pub fn new() -> Trie {
+        Trie {
+            nodes: vec![TrieNode::new(None)],
         }
     }
 
-    fn new_node(&mut self) -> usize {
-        self.nodes.push(TrieNode {
-            handler: None,
-            children: HashMap::new(),
-        });
-        return self.nodes.len() - 1;
+    pub fn add_root_handler(&mut self, handler: String) {
+        self.nodes[0].change_handler(handler);
     }
 
-    fn add(&mut self, handler: String, path: &str) {
-        let route_parts = split_path(path);
-        let mut current = &self.nodes[0];
-
-        for part in route_parts.iter() {
-            let has_part = current.children.get(part);
-            match has_part {
-                Some(v) => current = &self.nodes[*v],
+    pub fn add_route(&mut self, path: Vec<String>, handler: String) {
+        let mut current_idx: usize = 0;
+        for sub_path in path.iter() {
+            match self.nodes[current_idx].children.get(sub_path) {
+                Some(idx) => current_idx = *idx,
                 None => {
-                    let next = self.new_node();
-                    current.children.insert(*part, next.clone());
-                    current = &self.nodes[next];
+                    self.nodes.push(TrieNode::new(None));
+                    let next = &(self.nodes.len() - 1);
+                    self.nodes[current_idx].add_path(sub_path, &next);
+                    current_idx = *next;
                 }
             }
         }
-        current.handler = Some(handler);
+        self.nodes[current_idx].change_handler(handler);
+    }
+
+    pub fn get_route(&self, path: Vec<String>) -> Option<String> {
+        let mut current_idx: usize = 0;
+        for sub_path in path.iter() {
+            match self.nodes[current_idx].children.get(sub_path) {
+                Some(idx) => current_idx = *idx,
+                None => {
+                    return None;
+                }
+            }
+        }
+        return self.nodes[current_idx].handler.clone();
     }
 }
 
-// struct Router {
-//     root_handler: String,
-//     page_missing: String,
-//     trie: RouterTrie,
-// }
+pub struct HttpRouter {
+    page_missing: Option<String>,
+    routes: Trie,
+}
 
-// impl Router {
-//     fn new(root: &str, missing: &str) -> Self {}
-//     fn addHandler(&self, route: &str, handler: &str) {}
-//     fn lookup(&self, route: &str) -> String {}
-//     fn split_path(&self, route: &str) -> Vec<String> {}
-// }
+impl HttpRouter {
+    pub fn new(root_handler: Option<String>, page_missing: Option<String>) -> Self {
+        let mut router = HttpRouter {
+            page_missing,
+            routes: Trie::new(),
+        };
+
+        match root_handler {
+            Some(v) => router.routes.add_root_handler(v),
+            _ => (),
+        }
+
+        return router;
+    }
+
+    pub fn add_handler(&mut self, path: String, handler: String) {
+        let route_path = HttpRouter::split_path(&path);
+        self.routes.add_route(route_path, handler);
+    }
+
+    pub fn lookup(&self, route: String) -> String {
+        let route_path = HttpRouter::split_path(&route);
+        match self.routes.get_route(route_path) {
+            Some(v) => v,
+            None => match self.page_missing.clone() {
+                Some(v) => v,
+                None => "default route missing".to_owned(),
+            },
+        }
+    }
+
+    fn split_path(route: &str) -> Vec<String> {
+        let route_path: Vec<String> = route.split('/').map(|e| String::from(e)).collect();
+        if route_path[route_path.len() - 1] == "" {
+            return route_path[1..route_path.len() - 1].to_vec();
+        } else {
+            return route_path[1..].to_vec();
+        }
+    }
+}
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
     #[test]
-    fn check_split_path() {
-        assert_eq!(split_path("/about/me"), vec!["about", "me"]);
-        assert_eq!(split_path("/home/page/"), vec!["home", "page"]);
-        let x: Vec<String> = Vec::new();
-        assert_eq!(split_path("/"), x);
+    fn check_change_root_handler() {
+        let mut trie = Trie::new();
+        trie.add_root_handler("index handler".to_owned());
+        assert_eq!(trie.nodes[0].handler, Some("index handler".to_owned()));
     }
 
     #[test]
-    fn check_router_trie() {
-        let mut router = RouterTrie::new(String::from("root page"));
-        // router should start with a root
-        router.add(String::from("found home page"), "/");
+    fn check_add_children() {
+        let mut trie = Trie::new();
+        trie.add_route(
+            vec!["product".to_owned(), "listings".to_owned()],
+            "product listings".to_owned(),
+        );
+        assert_eq!(trie.nodes.len(), 3);
+
+        trie.add_route(
+            vec!["product".to_owned(), "about".to_owned()],
+            "product about".to_owned(),
+        );
+        assert_eq!(trie.nodes.len(), 4);
+    }
+
+    #[test]
+    fn check_get_route() {
+        let mut trie = Trie::new();
+        trie.add_route(
+            vec!["product".to_owned(), "listings".to_owned()],
+            "product listings handler".to_owned(),
+        );
+
+        assert_eq!(
+            trie.get_route(vec!["product".to_owned(), "listings".to_owned()]),
+            Some("product listings handler".to_owned())
+        )
+    }
+
+    #[test]
+    fn check_http_router_page_missing() {
+        let router = HttpRouter::new(None, Some("test 404".to_owned()));
+        assert_eq!(router.lookup("/home".to_owned()), "test 404".to_owned());
+    }
+
+    #[test]
+    fn check_http_router_index() {
+        let router = HttpRouter::new(Some("basic index".to_owned()), None);
+        assert_eq!(router.lookup("/".to_owned()), "basic index".to_owned());
+    }
+
+    #[test]
+    fn check_http_router_product_list() {
+        let mut router = HttpRouter::new(None, None);
+        router.add_handler(
+            "/product/listing".to_owned(),
+            "product listing page".to_owned(),
+        );
+        assert_eq!(
+            router.lookup("/product/listing".to_owned()),
+            "product listing page".to_owned()
+        );
     }
 }

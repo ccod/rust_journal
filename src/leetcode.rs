@@ -8,3 +8,4 @@ pub mod most_competitive;
 pub mod num_identical_pairs;
 pub mod ordered_stream;
 pub mod shuffle;
+pub mod sum_odd_length_subarrays;

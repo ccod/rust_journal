@@ -1,37 +1,21 @@
+use std::cmp::Ordering;
+
 // Problem 34
 pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    if nums.is_empty() {
-        return vec![-1, -1];
-    }
-
-    if nums.len() == 1 {
-        if nums[0] == target {
-            return vec![0, 0];
-        } else {
-            return vec![-1, -1];
-        }
-    }
-
-    let mut high = nums.len() - 1;
-    let mut low: usize = 0;
-    let mut mid: usize;
-    let mut found: Option<usize> = None;
+    let mut high = nums.len() as i32 - 1;
+    let mut low: i32 = 0;
+    let mut mid: i32;
+    let mut found: Option<i32> = None;
 
     while low <= high {
         mid = ((high - low) / 2) + low;
-        if nums[mid] == target {
-            found = Some(mid);
-            break;
-        }
-
-        if nums[mid] < target {
-            low = mid + 1;
-        } else {
-            if mid == 0 {
+        match nums[mid as usize].cmp(&target) {
+            Ordering::Equal => {
+                found = Some(mid);
                 break;
             }
-
-            high = mid - 1;
+            Ordering::Less => low = mid + 1,
+            Ordering::Greater => high = mid - 1,
         }
     }
 
@@ -40,33 +24,15 @@ pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {
             high = v;
             low = v;
 
-            let mut found_high = false;
-            let mut found_low = false;
-
-            loop {
-                if found_high && found_low {
-                    return vec![low as i32, high as i32];
-                }
-
-                if !found_high && high + 1 == nums.len() {
-                    found_high = true;
-                }
-                if !found_low && low == 0 {
-                    found_low = true;
-                }
-
-                if !found_high && nums[high + 1] == target {
-                    high += 1
-                } else {
-                    found_high = true;
-                }
-
-                if !found_low && nums[low - 1] == target {
-                    low -= 1;
-                } else {
-                    found_low = true;
-                }
+            while low != 0 && nums[low as usize - 1] == target {
+                low -= 1
             }
+
+            while high != nums.len() as i32 - 1 && nums[high as usize + 1] == target {
+                high += 1
+            }
+
+            vec![low, high]
         }
         None => vec![-1, -1],
     }

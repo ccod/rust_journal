@@ -7,6 +7,7 @@ pub mod high_five;
 pub mod highest_altitude;
 pub mod max_score_of_cards;
 pub mod maximum_wealth;
+pub mod min_cost_to_move_chips;
 pub mod most_competitive;
 pub mod num_identical_pairs;
 pub mod ordered_stream;

@@ -5,6 +5,9 @@ efforts. I am taking some of the solutions from the data structures and
 algorithms course I took at Udacity, and translating them into rust code.
 Hopefully idiomatic rust code too, but that might come later.
 
+
+Also happens to contain leetcode solutions, and some tests to verify.
+
 ## Requirements
 * To run the rust tests, you require rust 2018 edition
 * to run the python code, you require Python 3

@@ -3,6 +3,7 @@ pub mod count_letters;
 pub mod create_target_array;
 pub mod find_words;
 pub mod first_last_position;
+pub mod fixed_point;
 pub mod get_strongest;
 pub mod high_five;
 pub mod highest_altitude;

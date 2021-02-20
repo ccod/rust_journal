@@ -19,4 +19,5 @@ pub mod ordered_stream;
 pub mod repeated_n_times;
 pub mod shuffle;
 pub mod sum_odd_length_subarrays;
+pub mod three_consecutive_odds;
 pub mod trim_mean;

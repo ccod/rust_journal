@@ -15,6 +15,7 @@ pub mod min_cost_to_move_chips;
 pub mod min_operations;
 pub mod most_competitive;
 pub mod num_identical_pairs;
+pub mod num_rook_captures;
 pub mod ordered_stream;
 pub mod repeated_n_times;
 pub mod shuffle;

@@ -4,6 +4,7 @@ pub mod create_target_array;
 pub mod find_words;
 pub mod first_last_position;
 pub mod fixed_point;
+pub mod generate_possible_next_moves;
 pub mod get_strongest;
 pub mod high_five;
 pub mod highest_altitude;

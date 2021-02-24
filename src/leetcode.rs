@@ -10,6 +10,7 @@ pub mod high_five;
 pub mod highest_altitude;
 pub mod index_pairs;
 pub mod is_prefix_of_word;
+pub mod last_stone_weight;
 pub mod max_score_of_cards;
 pub mod maximum_wealth;
 pub mod middle_node;

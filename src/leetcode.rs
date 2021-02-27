@@ -1,6 +1,7 @@
 pub mod browser_history;
 pub mod count_letters;
 pub mod create_target_array;
+pub mod decrypt;
 pub mod find_words;
 pub mod first_last_position;
 pub mod fixed_point;

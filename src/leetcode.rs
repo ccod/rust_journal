@@ -6,6 +6,7 @@ pub mod fair_candy_swap;
 pub mod find_words;
 pub mod first_last_position;
 pub mod fixed_point;
+pub mod flood_fill;
 pub mod generate_possible_next_moves;
 pub mod get_strongest;
 pub mod high_five;

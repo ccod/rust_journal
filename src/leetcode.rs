@@ -25,6 +25,7 @@ pub mod min_cost_to_move_chips;
 pub mod min_operations;
 pub mod missing_number;
 pub mod most_competitive;
+pub mod move_zeroes;
 pub mod num_identical_pairs;
 pub mod num_rook_captures;
 pub mod num_water_bottles;

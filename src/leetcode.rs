@@ -31,6 +31,7 @@ pub mod num_identical_pairs;
 pub mod num_rook_captures;
 pub mod num_water_bottles;
 pub mod ordered_stream;
+pub mod reformat;
 pub mod repeated_n_times;
 pub mod rotated_digits;
 pub mod shuffle;

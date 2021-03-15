@@ -4,6 +4,7 @@ pub mod count_letters;
 pub mod create_target_array;
 pub mod decrypt;
 pub mod fair_candy_swap;
+pub mod find_the_difference;
 pub mod find_words;
 pub mod first_last_position;
 pub mod fixed_point;

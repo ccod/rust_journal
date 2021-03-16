@@ -37,6 +37,7 @@ pub mod reformat;
 pub mod repeated_n_times;
 pub mod rotated_digits;
 pub mod shuffle;
+pub mod sparse_vector;
 pub mod sum_odd_length_subarrays;
 pub mod three_consecutive_odds;
 pub mod transpose;

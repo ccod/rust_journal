@@ -1,3 +1,4 @@
+pub mod balanced_string_split;
 pub mod browser_history;
 pub mod can_attend_meetings;
 pub mod count_letters;

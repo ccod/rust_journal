@@ -1,6 +1,7 @@
 pub mod balanced_string_split;
 pub mod browser_history;
 pub mod can_attend_meetings;
+pub mod count_consistent_strings;
 pub mod count_letters;
 pub mod create_target_array;
 pub mod decrypt;

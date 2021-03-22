@@ -34,6 +34,7 @@ pub mod missing_number;
 pub mod most_competitive;
 pub mod move_zeroes;
 pub mod num_identical_pairs;
+pub mod num_jewels_in_stones;
 pub mod num_rook_captures;
 pub mod num_water_bottles;
 pub mod ordered_stream;

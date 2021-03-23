@@ -24,6 +24,7 @@ pub mod is_path_crossing;
 pub mod is_prefix_of_word;
 pub mod largest_subarray;
 pub mod last_stone_weight;
+pub mod max_depth;
 pub mod max_length_between_equal_characters;
 pub mod max_score_of_cards;
 pub mod maximum_wealth;

@@ -41,6 +41,7 @@ pub mod num_water_bottles;
 pub mod number_of_matches;
 pub mod ordered_stream;
 pub mod reformat;
+pub mod remove_vowels;
 pub mod repeated_n_times;
 pub mod rotated_digits;
 pub mod shuffle;

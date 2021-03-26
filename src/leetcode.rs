@@ -1,6 +1,7 @@
 pub mod anagram_mappings;
 pub mod balanced_string_split;
 pub mod browser_history;
+pub mod calculate_time;
 pub mod can_attend_meetings;
 pub mod count_consistent_strings;
 pub mod count_letters;

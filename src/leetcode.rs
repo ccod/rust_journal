@@ -7,6 +7,7 @@ pub mod count_consistent_strings;
 pub mod count_letters;
 pub mod create_target_array;
 pub mod decrypt;
+pub mod defang_i_paddr;
 pub mod fair_candy_swap;
 pub mod find_kth_positive;
 pub mod find_the_difference;

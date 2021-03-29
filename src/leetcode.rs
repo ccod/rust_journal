@@ -24,6 +24,7 @@ pub mod index_pairs;
 pub mod is_anagram;
 pub mod is_path_crossing;
 pub mod is_prefix_of_word;
+pub mod kids_with_candies;
 pub mod largest_subarray;
 pub mod last_stone_weight;
 pub mod max_depth;

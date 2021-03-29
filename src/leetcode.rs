@@ -42,6 +42,7 @@ pub mod num_jewels_in_stones;
 pub mod num_rook_captures;
 pub mod num_water_bottles;
 pub mod number_of_matches;
+pub mod number_of_steps;
 pub mod ordered_stream;
 pub mod reformat;
 pub mod remove_vowels;

@@ -48,6 +48,7 @@ pub mod reformat;
 pub mod remove_vowels;
 pub mod repeated_n_times;
 pub mod rotated_digits;
+pub mod running_sum;
 pub mod shuffle;
 pub mod smaller_numbers_than_current;
 pub mod sparse_vector;

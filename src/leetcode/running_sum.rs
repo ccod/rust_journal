@@ -1,3 +1,4 @@
+// Problem 1480
 pub fn running_sum(nums: Vec<i32>) -> Vec<i32> {
     let mut result: Vec<i32> = Vec::new();
     let mut current: i32 = 0;

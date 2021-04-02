@@ -26,6 +26,7 @@ pub mod is_path_crossing;
 pub mod is_prefix_of_word;
 pub mod kids_with_candies;
 pub mod largest_subarray;
+pub mod largest_unique_number;
 pub mod last_stone_weight;
 pub mod max_depth;
 pub mod max_length_between_equal_characters;

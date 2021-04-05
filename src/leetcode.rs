@@ -48,6 +48,7 @@ pub mod ordered_stream;
 pub mod reformat;
 pub mod remove_vowels;
 pub mod repeated_n_times;
+pub mod restore_string;
 pub mod rotated_digits;
 pub mod running_sum;
 pub mod shuffle;

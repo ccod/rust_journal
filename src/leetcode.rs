@@ -5,6 +5,7 @@ pub mod calculate_time;
 pub mod can_attend_meetings;
 pub mod count_consistent_strings;
 pub mod count_letters;
+pub mod count_matches;
 pub mod create_target_array;
 pub mod decrypt;
 pub mod defang_i_paddr;

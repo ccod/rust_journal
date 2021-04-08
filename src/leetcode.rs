@@ -19,6 +19,7 @@ pub mod flood_fill;
 pub mod generate_possible_next_moves;
 pub mod get_decimal_value;
 pub mod get_strongest;
+pub mod halves_are_alike;
 pub mod high_five;
 pub mod highest_altitude;
 pub mod index_pairs;

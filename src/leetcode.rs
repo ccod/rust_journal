@@ -23,6 +23,7 @@ pub mod halves_are_alike;
 pub mod high_five;
 pub mod highest_altitude;
 pub mod index_pairs;
+pub mod interpret;
 pub mod is_anagram;
 pub mod is_path_crossing;
 pub mod is_prefix_of_word;

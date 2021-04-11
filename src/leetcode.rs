@@ -63,4 +63,5 @@ pub mod sum_odd_length_subarrays;
 pub mod three_consecutive_odds;
 pub mod transpose;
 pub mod trim_mean;
+pub mod truncate_sentence;
 pub mod xor_operation;

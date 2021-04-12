@@ -38,6 +38,7 @@ pub mod maximum_wealth;
 pub mod middle_node;
 pub mod min_cost_to_move_chips;
 pub mod min_operations;
+pub mod min_time_to_visit_all_points;
 pub mod missing_number;
 pub mod most_competitive;
 pub mod move_zeroes;

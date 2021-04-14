@@ -51,6 +51,7 @@ pub mod number_of_steps;
 pub mod ordered_stream;
 pub mod parking_system;
 pub mod reformat;
+pub mod remove_outer_parentheses;
 pub mod remove_vowels;
 pub mod repeated_n_times;
 pub mod restore_string;

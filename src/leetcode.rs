@@ -66,4 +66,5 @@ pub mod three_consecutive_odds;
 pub mod transpose;
 pub mod trim_mean;
 pub mod truncate_sentence;
+pub mod unique_morse_representations;
 pub mod xor_operation;

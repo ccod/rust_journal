@@ -7,6 +7,7 @@ Hopefully idiomatic rust code too, but that might come later.
 
 
 Also happens to contain leetcode solutions, and some tests to verify.
+leetcode profile: [here](https://leetcode.com/ccod/)
 
 ## Requirements
 * To run the rust tests, you require rust 2018 edition

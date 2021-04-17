@@ -1,4 +1,5 @@
 pub mod anagram_mappings;
+pub mod maximum69_number;
 pub mod balanced_string_split;
 pub mod browser_history;
 pub mod calculate_time;

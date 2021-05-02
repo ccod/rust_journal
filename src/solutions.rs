@@ -1,4 +1,5 @@
 pub mod problem_1827;
+pub mod problem_1837;
 pub mod problem_1768;
 pub mod problem_1351;
 pub mod problem_1450;

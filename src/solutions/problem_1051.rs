@@ -9,8 +9,6 @@ pub fn height_checker(heights: Vec<i32>) -> i32 {
         }
     }
 
-    // println!("HELLO!! sorted: {:?}", sorted);
-
     result
 }
 
